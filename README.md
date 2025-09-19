@@ -54,6 +54,9 @@ El proyecto está estructurado **por tipo y por feature**, lo que permite manten
 ## 🚀 Comandos de Desarrollo
 
 ```bash
+# Acceder a la carpeta client
+cd client
+
 # Instalar dependencias
 npm install
 
