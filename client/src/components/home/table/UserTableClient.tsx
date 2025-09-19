@@ -6,6 +6,7 @@ import { DataTable, DataTableStateEvent } from "primereact/datatable";
 import { Column } from "primereact/column";
 import UserCell from "./UserCell";
 import { useTableNavigation } from "@/hooks/useTableNavigation";
+import RemoveUserButton from "./RemoveUserButton";
 
 type Props = {
   users: User[];
@@ -43,7 +44,7 @@ const UserTableClient: React.FC<Props> = ({ users }) => {
               field={item.field}
               header={item.header}
               sortable={item.sortable}
-              style={{ width: "25%" }}
+              style={{ width: "23%", height: "53px" }}
               body={
                 item.field === "usuario"
                   ? (data) => {
@@ -54,6 +55,14 @@ const UserTableClient: React.FC<Props> = ({ users }) => {
             />
           );
         })}
+        <Column
+          field="acciones"
+          header="Acciones"
+          align={"center"}
+          body={(data) => {
+            return <RemoveUserButton key={data.usuario} user={data} />;
+          }}
+        />
       </DataTable>
     </div>
   );

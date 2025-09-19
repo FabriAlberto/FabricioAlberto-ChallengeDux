@@ -4,8 +4,8 @@ import { HEIGHT_NAVBAR } from "@/utils/constants";
 const Navbar = () => {
   return (
     <div
-      className="w-full px-3 flex justify-content-between align-items-center bg-blue-500 fixed z-1"
-      style={{ height: `${HEIGHT_NAVBAR}px` }}
+      className="w-full px-3 flex justify-content-between align-items-center  fixed z-1 bg-primary"
+      style={{ height: `${HEIGHT_NAVBAR}px`}}
     >
       <Image
         src={"/logo-dux-blanco.png"}

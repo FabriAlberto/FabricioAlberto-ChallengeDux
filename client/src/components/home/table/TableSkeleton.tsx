@@ -7,18 +7,20 @@ import React from "react";
 type Props = {
   limit: number;
   sortField?: string;
-  sortOrder?: 'asc' | 'desc';
+  sortOrder?: "asc" | "desc";
 };
 
 const TableSkeleton = ({ limit, sortField, sortOrder }: Props) => {
   const mockItems = Array.from({ length: limit }, (v, i) => ({ i: i }));
   return (
     <div className="card">
-      <DataTable 
-        value={mockItems} 
+      <DataTable
+        value={mockItems}
         tableStyle={{ width: "100%" }}
         sortField={sortField}
-        sortOrder={sortOrder === "asc" ? 1 : sortOrder === "desc" ? -1 : undefined}
+        sortOrder={
+          sortOrder === "asc" ? 1 : sortOrder === "desc" ? -1 : undefined
+        }
       >
         {colItems.map((item) => (
           <Column
@@ -26,10 +28,16 @@ const TableSkeleton = ({ limit, sortField, sortOrder }: Props) => {
             field={item.field}
             header={item.header}
             sortable={item.sortable}
-            style={{ width: "25%", height: "53px" }}
+            style={{ width: "23%", height: "53px" }}
             body={<Skeleton />}
           />
         ))}
+        <Column
+          field="acciones"
+          header="Acciones"
+          align={"center"}
+          body={<Skeleton />}
+        />
       </DataTable>
     </div>
   );

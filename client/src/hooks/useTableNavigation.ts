@@ -1,6 +1,7 @@
 "use client";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { buildSearchParams } from "@/utils/api";
+import { Status } from "@/types/personal";
 
 export const useTableNavigation = () => {
   const searchParams = useSearchParams();
@@ -14,6 +15,7 @@ export const useTableNavigation = () => {
       limit: string;
       sort: string;
       order: "asc" | "desc";
+      status: Status;
     }>
   ) => {
     const params = buildSearchParams(searchParams, updates);
@@ -45,7 +47,17 @@ export const useTableNavigation = () => {
       page: "1",
     });
   };
-
+  const handleChangeStatus = (status: Status) => {
+    updateParams({
+      status,
+    });
+  };
+  const removeFilters = () => {
+    updateParams({
+      status: undefined,
+      query: "",
+    });
+  };
   return {
     searchParams,
     updateParams,
@@ -53,5 +65,7 @@ export const useTableNavigation = () => {
     handlePageChange,
     handleSearch,
     handleLimitChange,
+    handleChangeStatus,
+    removeFilters,
   };
 };

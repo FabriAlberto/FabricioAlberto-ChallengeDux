@@ -8,3 +8,42 @@ body {
   ;
 }
 
+:root {
+  --primary-color: #0763E7;
+  --primary-color-text: #ffffff;
+  --highlight-bg: #0763E7;
+  --highlight-text-color: #ffffff;
+}
+
+.bg-primary{
+  background-color: var(--primary-color) !important;
+
+}
+
+/* FORZAR estilos de botón primario */
+.p-button.p-button-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color-text) !important;
+}
+
+/* outlined general */
+.p-button-outlined.p-button-primary {
+  background-color: transparent !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+/* Hover states (opcional) */
+.p-button.p-button-outlined:hover,
+.p-confirm-dialog .p-button.p-button-outlined:hover,
+.p-confirmdialog .p-button.p-button-outlined:hover {
+  background-color: var(--primary-color) !important;
+  color: var(--primary-color-text) !important;
+}
+.p-dialog .p-dialog-header .p-dialog-header-icon {
+  color: #ffffff; /* color del ícono */
+}
+.p-dialog .p-dialog-header .p-dialog-header-icon:hover {
+  background-color: #054bb3; /* hover */
+}

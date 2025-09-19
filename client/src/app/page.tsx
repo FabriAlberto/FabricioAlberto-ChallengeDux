@@ -1,9 +1,10 @@
-import Search from "@/components/home/Search";
-import TableSkeleton from "@/components/home/TableSkeleton";
-import UserTable from "@/components/home/UserTable";
-import UserTablePaginatorClient from "@/components/home/UserTablePaginatorClient";
-import { getCachedTotalCount } from "@/utils/cache";
-import { Button } from "primereact/button";
+
+import CreateUserButton from "@/components/home/create-user/CreateUserButton";
+import Filter from "@/components/home/table/filters/Filter";
+import TableSkeleton from "@/components/home/table/TableSkeleton";
+import UserTable from "@/components/home/table/UserTable";
+import UserTablePaginatorClient from "@/components/home/table/UserTablePaginatorClient";
+import { getCachedPersonalTotal } from "@/utils/cache";
 import { Suspense } from "react";
 
 export default async function Home({
@@ -15,6 +16,7 @@ export default async function Home({
     limit?: string;
     sort?: string;
     order?: string;
+    status?:string;
   };
 }) {
   const query = searchParams?.query || "";
@@ -22,20 +24,21 @@ export default async function Home({
   const limit = searchParams?.limit || "10";
   const sortField = searchParams?.sort || "";
   const sortOrder = (searchParams?.order as "asc" | "desc") || "asc";
+  const status= searchParams?.status||""
 
-  const totalCount = await getCachedTotalCount(query);
+  const totalCount = await getCachedPersonalTotal(query,status);
 
   return (
     <section>
       <div className="flex justify-content-between align-items-center">
         <p className="text-2xl font-bold text-black">Usuarios</p>
-        <Button className="pi pi-plus"> Nuevo usuario </Button>
+        <CreateUserButton/>
       </div>
       <div className="mb-3">
-        <Search />
+        <Filter />
       </div>
       <Suspense
-        key={query + page + limit + sortField + sortOrder}
+        key={query + page + limit + sortField + sortOrder+status}
         fallback={
           <TableSkeleton
             limit={Number(limit)}
@@ -50,6 +53,7 @@ export default async function Home({
           limit={limit}
           sortField={sortField}
           sortOrder={sortOrder}
+          status={status}
         />
       </Suspense>
       {/* En este caso separamos el paginador, para manejarlo por aparte, simulando o usando enrealidad 

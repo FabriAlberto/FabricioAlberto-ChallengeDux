@@ -2,7 +2,7 @@ export type User = {
   id: string;
   usuario: string;
   sector: number;
-  estado: 'ACTIVO'|'INACTIVO';
+  estado: Status;
 };
 
 export type Pagination = {
@@ -18,5 +18,14 @@ export type UserTableColItem = {
 
 export type UsersResponse = {
   users: User[];
-  totalCount: number;
+};
+export enum Status{
+  ACTIVE='ACTIVO',
+  INACTIVE='INACTIVO'
+}
+export type FormUser = {
+  id: string;
+  usuario: string;
+  sector: number;
+  estado: Status | string;
 };

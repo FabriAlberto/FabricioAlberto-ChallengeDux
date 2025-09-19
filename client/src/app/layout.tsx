@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-white`}>
         <PrimeReactProvider value={{ ripple: true }}>
           <MainLayout>{children}</MainLayout>
         </PrimeReactProvider>
